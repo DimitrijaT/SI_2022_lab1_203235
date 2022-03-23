@@ -1,0 +1,574 @@
+4====================================================================================================================
+
+Со командата git clone го копираме remote repo-то на нашата локална машина.
+
+$ git clone https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+
+5====================================================================================================================
+
+Со командата cd влегуваме во нашиот локален git repo
+
+$ cd SI_2022_lab1_203235
+
+Со командата vim создадов нов txt фајл во код вметнав информации.
+
+$ vim shopping_list.txt
+
+Bananas
+Orange juice
+Chocolate
+Peanuts
+Pizza
+
+ESC + :wq -> ENTER   (Како излегов од vim editor-от и го зачував фајлот)
+
+Со командата git add *.txt ги додадов сите фајлови што завршуваат на .txt, во овој случај е само еден на staging area.
+(git add shopping_list.txt ќе ја извршеше истата работа)
+
+$ git add *.txt
+
+Со командата git commit -m "//" направив snapshot на се што е на staging area, -m означува со со некоја порака за причината зошто сум го направил тоа.
+
+$ git commit -m "Add 5 items to the shopping list"
+
+
+6====================================================================================================================
+
+Со командата nano го отворив .txt фајлот за да го едитирам.
+
+$ nano shopping_list.txt
+ 
+Bananas x 2
+Orange juice x 2
+Chocolate x 2
+Peanuts x 2 
+Pizza x 2
+
+CTRL + X
+Y
+ENTER
+
+Повторнот истиот процес од претходно, овој пат правам нов commit кој ќе биде новиот HEAD.
+
+$ git add *.txt
+
+$ git commit -m "Add quantities to the items."
+
+
+7====================================================================================================================
+
+Со командата git branch создадов нови 2 гранки.
+
+$ git branch branch1
+
+$ git branch branch2
+
+Екстра: Ако не е наведено име, можам да си ги видам гранките за да се осигурам дека се направени успешно :)
+
+$ git branch
+  branch1
+  branch2
+* master
+
+8====================================================================================================================
+
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~
+$ git clone https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+Cloning into 'SI_2022_lab1_203235'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (6/6), done.
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~
+$ cd SI_2022_lab1_203235
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ vim shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ ls
+README.md  shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        shopping_list.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git add *.txt
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ ^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   shopping_list.txt
+
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git commit -m "Add 5 items to the shopping list"
+[master f9b5246] Add 5 items to the shopping list
+ 1 file changed, 5 insertions(+)
+ create mode 100644 shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ nano shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   shopping_list.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git add *.txt
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git diff
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ dit diff --staged
+bash: dit: command not found
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git diff --staged
+diff --git a/shopping_list.txt b/shopping_list.txt
+index ed8216b..9a18a1b 100644
+--- a/shopping_list.txt
++++ b/shopping_list.txt
+@@ -1,5 +1,5 @@
+-Bananas
+-Orange juice
+-Chocolate
+-Peanuts
+-Pizza
++Bananas x 2
++Orange juice x 2
++Chocolate x 2
++Peanuts x 2
++Pizza x 2
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git commit -m "Add quantities to the items."
+[master 9c9b1ce] Add quantities to the items.
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git branch branch1
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git branch branch2
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git branch
+  branch1
+  branch2
+* master
+
+9====================================================================================================================
+
+Со командата git push се прикачи master на origin master (remote repo-то)
+
+$ git push
+
+За гранките треба експлицитно да се каже на origin дека сакаме да ги прикачиме
+
+$ git push origin branch1
+
+$ git push origin branch2
+
+
+10====================================================================================================================
+
+Со git checkout се префрламе да работи на гранката branch1
+
+$ git checkout branch1
+
+11====================================================================================================================
+
+Со nano <item.txt> edit-ирам 
+
+$ nano shopping_list.txt
+
+Bananas x 2
+Orange juice x 2
+Chocolate x 2
+Peanuts x 2 
+Pizza x 10
+
+CTRL + X
+Y
+ENTER
+
+Го додавам на staging area
+
+$ git add *.txt
+
+Го commit-нувам.
+
+$ git commit -m "Change quantity of item #5"
+
+Сите овие работи се случуваат на гранката branch1 ! 
+
+12====================================================================================================================
+
+Со git checkout се префрламе да работи на гранката master
+
+$ git checkout master
+
+13====================================================================================================================
+
+Со nano <item.txt> edit-ирам 
+
+nano shopping_list.txt
+
+Bananas x 2
+Orange juice x 5
+Chocolate x 2
+Peanuts x 2 
+Pizza x 2
+
+Го додавам на staging area
+
+git add *.txt
+
+Го commit-нувам.
+
+$ git commit -m "Change quantity of item #2"
+[master 9e5aafc] Change quantity of item #2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Сите овие работи се случуваат на гранката master !
+
+14====================================================================================================================
+
+Посебно треба да се push-нат т.е. пикачат на remote repo-то и двете гранки.
+Note: Нема потреба push на branch2 поради тоа што не е сеуште променета.
+
+$ git push origin master
+
+
+$ git push origin branch1
+
+
+15====================================================================================================================
+
+Со git checkout се префрламе да работи на гранката branch2
+
+$ git checkout branch2
+Switched to branch 'branch2'
+
+16====================================================================================================================
+
+Со nano <item.txt> edit-ирам 
+
+$ nano shopping_list.txt
+
+Bananas x 2
+Orange juice x 2
+Chocolate x 2
+Popcorn x 2 
+Pizza x 2
+
+CTRL + X
+Y
+ENTER
+
+Го додавам на staging area
+
+$ git add *.txt
+
+Го commit-нувам.
+
+$ git commit -m "Modify item #4"
+
+Сите овие работи се случуваат на гранката branch2 !
+
+17====================================================================================================================
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git push
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 680 bytes | 680.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+   dfb9f46..9c9b1ce  master -> master
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ ^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git push
+fatal: The current branch branch1 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin branch1
+
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git push origin branch1
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'branch1' on GitHub by visiting:
+remote:      https://github.com/DimitrijaT/SI_2022_lab1_203235/pull/new/branch1
+remote:
+To https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+ * [new branch]      branch1 -> branch1
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ ^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git push origin branch2
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'branch2' on GitHub by visiting:
+remote:      https://github.com/DimitrijaT/SI_2022_lab1_203235/pull/new/branch2
+remote:
+To https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+ * [new branch]      branch2 -> branch2
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git checkout branch1
+Already on 'branch1'
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ nano shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git status
+On branch branch1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   shopping_list.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ ^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git add *.txt
+warning: LF will be replaced by CRLF in shopping_list.txt.
+The file will have its original line endings in your working directory
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git commit -m "Change quantity of item #5"
+[branch1 62ebe80] Change quantity of item #5
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ nano shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ ^C
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git add *.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git commit -m "Change quantity of item #2"
+[master 9e5aafc] Change quantity of item #2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git push origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 359 bytes | 359.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+   9c9b1ce..9e5aafc  master -> master
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git push origin branch1
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 334 bytes | 334.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/DimitrijaT/SI_2022_lab1_203235.git
+   9c9b1ce..62ebe80  branch1 -> branch1
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git push origin branch2
+Everything up-to-date
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master)
+$ git checkout branch2
+Switched to branch 'branch2'
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ nano shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ git add *.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ git commit -m "Modify item #4"
+[branch2 5f30d3a] Modify item #4
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+18====================================================================================================================
+
+Со nano <item.txt> edit-ирам 
+
+$ nano shopping_list.txt
+
+Го додавам на staging area
+
+$ git add *.txt
+
+Го commit-нувам. Но овој пат, додавам --amend како аргумент поради тоа што не сакам да направам нов commit туку да направам update на веќе постоечкиот.
+
+$ git commit --amend -m "Modify item #4 and add item #6"
+
+
+19====================================================================================================================
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ nano shopping_list.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ git branch
+  branch1
+* branch2
+  master
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ git add *.txt
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (branch2)
+$ git commit --amend -m "Modify item #4 and add item #6"
+[branch2 18fa5aa] Modify item #4 and add item #6
+ Date: Wed Mar 23 19:48:06 2022 +0100
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+20====================================================================================================================
+
+Се префрламе на гранката master
+
+$ git checkout master
+
+ESC + :wq -> ENTER
+
+Гранките ги спојуваме со рекурзивна стратегија. Ова е поради тоа што на master имавме commit после создавањето на гранката branch1. 
+Нема конфликти во ниту една линија.
+
+$ git merge branch1
+
+
+21====================================================================================================================
+
+
+При обидот да се направи merge на master со branch2 настанува конфликт.
+
+$ git merge branch2
+CONFLICT (content): Merge conflict in shopping_list.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+За да продолжиме понатаму мора да се поправат конфликтите
+
+Го отвараме фајлот
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master|MERGING)
+$ nano shopping_list.txt
+
+Bananas x 2
+Orange juice x 5
+Chocolate x 2
+<<<<<<< HEAD
+Peanuts x 2
+Pizza x 10
+=======
+Popcorn x 2
+Pizza x 2
+Apples x 7
+>>>>>>> branch2
+
+После поправка на конфликтот:
+
+Bananas x 2
+Orange juice x 5
+Chocolate x 2
+Pizza x 10
+Popcorn x 2
+Apples x 7
+
+Сега го додаваме со add на staging:
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master|MERGING)
+$ git add *.txt
+
+И правиме merge commit:
+(Ова е повторно рекурзивен merge)
+
+dimit@LAPTOP-1C3I2U96 MINGW64 ~/SI_2022_lab1_203235 (master|MERGING)
+$ git commit
+[master 7627dab] Merge branch 'branch2'
+
+
+
+22====================================================================================================================
+
+...Додадете ја текстуалната датотека во која водевте документација до сега
+(потпишана со бројот на вашиот индекс) и направете commit со порака “Add
+docs”.
+
+git add -all
+
+git commit -m "Add docs."
